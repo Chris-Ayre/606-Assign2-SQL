@@ -1,0 +1,34 @@
+---
+title: "607_Week2_Assign"
+author: "Chris Ayre"
+date: "2/10/2019"
+output: html_document
+---
+
+install.packages("RMySQL")
+
+
+## connect to my local SQL database
+
+```{r}
+con <- dbConnect(RMySQL::MySQL(),
+                 dbname='assign2', 
+                 host='localhost',
+                 user = 'testuser',
+                 password = "password")
+      
+```
+
+## list the existing tables in my relational database
+```{r}
+dbListTables(con)
+```
+
+
+## load the tables into R dataframes
+
+```{r}
+rKids <- dbReadTable(con, "Kids")
+rMovies <- dbReadTable(con, "Movies")
+rRatings <- dbReadTable(con, "Ratings")
+```
